@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced PV Installation Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Advanced PV Installation Calculator</h1>
+        </header>
+        <main>
+            <section class="calculator">
+                <form id="pv-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="latitude">Latitude</label>
+                            <input type="number" id="latitude" step="0.000001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="number" id="longitude" step="0.000001" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="roof-area">Available Roof Area (m²)</label>
+                            <input type="number" id="roof-area" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="roof-angle">Roof Angle (degrees)</label>
+                            <input type="number" id="roof-angle" step="0.1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="energy-consumption">Annual Energy Consumption (kWh)</label>
+                            <input type="number" id="energy-consumption" step="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="panel-efficiency">Panel Efficiency (%)</label>
+                            <input type="number" id="panel-efficiency" step="0.1" value="20" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inverter-efficiency">Inverter Efficiency (%)</label>
+                            <input type="number" id="inverter-efficiency" step="0.1" value="96" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="panel-degradation">Annual Panel Degradation (%)</label>
+                            <input type="number" id="panel-degradation" step="0.1" value="0.5" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="shading-factor">Shading Factor (%)</label>
+                            <input type="number" id="shading-factor" step="0.1" value="5" required>
+                        </div>
+                    </div>
+                    <button type="submit">Calculate</button>
+                </form>
+            </section>
+            <section id="results" class="results hidden">
+                <h2>Results</h2>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <h3>System Size</h3>
+                        <p><span id="system-size"></span> kW</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Annual Energy Production</h3>
+                        <p><span id="energy-production"></span> kWh</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Number of Panels</h3>
+                        <p><span id="panel-count"></span></p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Estimated Cost</h3>
+                        <p>$<span id="estimated-cost"></span></p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Payback Period</h3>
+                        <p><span id="payback-period"></span> years</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>CO2 Savings</h3>
+                        <p><span id="co2-savings"></span> kg/year</p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="production-chart"></canvas>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2023 Advanced PV Installation Calculator. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="pv_calculations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
